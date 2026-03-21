@@ -1,0 +1,97 @@
+<header class="navbar__inner">
+  <!-- Logo -->
+  <a
+    href="#hero"
+    class="navbar__logo"
+    aria-label="Retour en haut"
+    (click)="scrollTo('hero', $event)"
+  >
+    <span class="logo-text">SK</span>
+    <span class="logo-dot" aria-hidden="true"></span>
+  </a>
+
+  <!-- Desktop navigation -->
+  <nav aria-label="Navigation principale">
+    <ul class="navbar__links" role="list">
+      <li>
+        <a
+          href="#about"
+          class="nav-link"
+          [class.nav-link--active]="activeSection() === 'about'"
+          (click)="scrollTo('about', $event)"
+        >À propos</a>
+      </li>
+      <li>
+        <a
+          href="#skills"
+          class="nav-link"
+          [class.nav-link--active]="activeSection() === 'skills'"
+          (click)="scrollTo('skills', $event)"
+        >Compétences</a>
+      </li>
+      <li>
+        <a
+          href="#projects"
+          class="nav-link"
+          [class.nav-link--active]="activeSection() === 'projects'"
+          (click)="scrollTo('projects', $event)"
+        >Projets</a>
+      </li>
+      <li>
+        <a
+          href="#contact"
+          class="nav-link"
+          [class.nav-link--active]="activeSection() === 'contact'"
+          (click)="scrollTo('contact', $event)"
+        >Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Mobile hamburger -->
+  <button
+    type="button"
+    class="navbar__hamburger"
+    [class.hamburger--open]="menuOpen()"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="mobile-nav"
+    aria-label="Ouvrir le menu"
+    (click)="toggleMenu()"
+  >
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+</header>
+
+<!-- Mobile menu -->
+@if (menuOpen()) {
+  <nav
+    id="mobile-nav"
+    class="navbar__mobile"
+    aria-label="Navigation mobile"
+  >
+    <ul role="list">
+      <li>
+        <a href="#about" class="nav-link" (click)="scrollTo('about', $event)">
+          À propos
+        </a>
+      </li>
+      <li>
+        <a href="#skills" class="nav-link" (click)="scrollTo('skills', $event)">
+          Compétences
+        </a>
+      </li>
+      <li>
+        <a href="#projects" class="nav-link" (click)="scrollTo('projects', $event)">
+          Projets
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="nav-link" (click)="scrollTo('contact', $event)">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+}

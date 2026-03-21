@@ -1,0 +1,118 @@
+<div
+  class="carousel-backdrop"
+  role="presentation"
+  (click)="onBackdropClick($event)"
+>
+  <div
+    class="carousel-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="carousel-title"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Header -->
+    <div class="carousel-modal__header">
+      <h2 id="carousel-title" class="carousel-modal__title">
+        {{ project().title }}
+      </h2>
+      <button
+        type="button"
+        class="carousel-modal__close"
+        (click)="close()"
+        aria-label="Fermer la galerie"
+        autofocus
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Stage -->
+    <div class="carousel-stage">
+      @if (total() > 1) {
+        <button
+          type="button"
+          class="carousel-nav carousel-nav--prev"
+          (click)="prev()"
+          aria-label="Image précédente"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+      }
+
+      <div class="carousel-image-wrap">
+        <img
+          [src]="project().images[currentIndex()]"
+          [alt]="project().title + ' — capture ' + (currentIndex() + 1) + ' sur ' + total()"
+          class="carousel-img"
+        />
+      </div>
+
+      @if (total() > 1) {
+        <button
+          type="button"
+          class="carousel-nav carousel-nav--next"
+          (click)="next()"
+          aria-label="Image suivante"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      }
+    </div>
+
+    <!-- Dots -->
+    @if (total() > 1) {
+      <div class="carousel-dots" role="group" aria-label="Navigation images">
+        @for (img of project().images; track $index) {
+          <button
+            type="button"
+            class="carousel-dot"
+            [class.carousel-dot--active]="currentIndex() === $index"
+            (click)="goTo($index)"
+            [attr.aria-label]="'Image ' + ($index + 1)"
+            [attr.aria-current]="currentIndex() === $index"
+          ></button>
+        }
+      </div>
+    }
+  </div>
+</div>

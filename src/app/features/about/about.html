@@ -1,0 +1,58 @@
+<section class="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about__grid">
+
+      <!-- LEFT : Avatar + Badges -->
+      <div class="about__left">
+        <div class="avatar" role="img" aria-label="Avatar de Serhat Kurklu">
+          <span class="avatar__initials" aria-hidden="true">SK</span>
+        </div>
+
+        <ul class="about__badges" role="list">
+          <li class="badge">
+            <span aria-hidden="true">📍</span>
+            <span>Clermont-Ferrand</span>
+          </li>
+          <li class="badge">
+            <span aria-hidden="true">💼</span>
+            <span>4 ans d'expérience</span>
+          </li>
+          <li class="badge">
+            <span aria-hidden="true">🎓</span>
+            <span>En formation</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT : Content -->
+      <div class="about__right">
+        <h2 id="about-heading" class="about__title">Qui suis-je&nbsp;?</h2>
+
+        <p class="about__bio">
+          Développeur Flutter passionné, basé à Clermont-Ferrand.
+          Je crée des applications mobiles cross-platform élégantes et
+          performantes avec Flutter, Android &amp; iOS.
+        </p>
+
+        <hr class="about__sep" aria-hidden="true" />
+
+        <h3 class="about__subtitle">Ce que je fais</h3>
+
+        <ul class="about__list" role="list">
+          <li>Développement d'apps Flutter cross-platform</li>
+          <li>Intégration Firebase (Auth, Firestore, Storage)</li>
+          <li>Architecture propre (Clean Architecture, BLoC)</li>
+        </ul>
+
+        <hr class="about__sep" aria-hidden="true" />
+
+        <a
+          href="#contact"
+          class="btn btn--outline"
+          (click)="scrollTo('contact', $event)"
+        >Me contacter</a>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+<section class="hero" [@heroEnter]>
+  <!-- Decorative background -->
+  <div class="hero__bg-grid" aria-hidden="true"></div>
+  <div class="hero__bg-glow" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <!-- Location badge -->
+    <div class="hero__location animate-item">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+      <span>Clermont-Ferrand</span>
+    </div>
+
+    <!-- Name -->
+    <h1 class="hero__name animate-item">
+      Serhat&nbsp;<span class="hero__name-accent">Kurklu</span>
+    </h1>
+
+    <!-- Typewriter title -->
+    <p
+      class="hero__typewriter animate-item"
+      [attr.aria-label]="currentTitle()"
+    >
+      <span aria-hidden="true">{{ displayedText() }}</span
+      ><span class="hero__cursor" aria-hidden="true"></span>
+    </p>
+
+    <!-- Bio -->
+    <p class="hero__bio animate-item">
+      Développeur Flutter passionné avec 4 ans d'expérience en informatique
+      dans la création d'applications cross-platform performantes et élégantes.
+      Je me spécialise dans le développement d'applications mobiles modernes
+      et réactives. Toujours en apprentissage et à l'exploration de nouvelles
+      technologies pour offrir les meilleures solutions.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="hero__actions animate-item">
+      <a
+        href="#projects"
+        class="btn btn--primary"
+        (click)="scrollTo('projects', $event)"
+      >Voir mes projets</a>
+      <a
+        href="#contact"
+        class="btn btn--outline"
+        (click)="scrollTo('contact', $event)"
+      >Me contacter</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  @if (!scrolled()) {
+    <div class="hero__scroll animate-item" aria-hidden="true">
+      <div class="mouse">
+        <div class="mouse__wheel"></div>
+      </div>
+      <span class="scroll-label">Défiler</span>
+    </div>
+  }
+</section>

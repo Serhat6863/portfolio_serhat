@@ -1,0 +1,213 @@
+/* ============================================================
+   CAROUSEL BACKDROP
+   ============================================================ */
+
+.carousel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  animation: backdropIn 200ms ease forwards;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.carousel-modal {
+  position: relative;
+  background: #0d1b35;
+  border: 1px solid #1a2d50;
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 860px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalIn 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- Header --- */
+.carousel-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid #1a2d50;
+  flex-shrink: 0;
+}
+
+.carousel-modal__title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+}
+
+.carousel-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.carousel-modal__close:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* ============================================================
+   STAGE (image + nav arrows)
+   ============================================================ */
+
+.carousel-stage {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+}
+
+.carousel-image-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  min-width: 0;
+}
+
+.carousel-img {
+  max-height: 68vh;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  display: block;
+  user-select: none;
+}
+
+/* --- Nav arrows --- */
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #0d1b35;
+  border: 1px solid #1a2d50;
+  color: #00b4d8;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.carousel-nav:hover {
+  background: rgba(0, 180, 216, 0.12);
+  border-color: rgba(0, 180, 216, 0.45);
+  box-shadow: 0 0 16px rgba(0, 180, 216, 0.2);
+}
+
+.carousel-nav:focus-visible {
+  outline: 2px solid #00b4d8;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   DOTS
+   ============================================================ */
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  flex-shrink: 0;
+  border-top: 1px solid #1a2d50;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.carousel-dot--active {
+  background: #00b4d8;
+  transform: scale(1.35);
+}
+
+.carousel-dot:hover:not(.carousel-dot--active) {
+  background: rgba(0, 180, 216, 0.5);
+}
+
+.carousel-dot:focus-visible {
+  outline: 2px solid #00b4d8;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .carousel-stage {
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel-img {
+    max-height: 55vh;
+  }
+
+  .carousel-modal__header {
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-backdrop,
+  .carousel-modal {
+    animation: none;
+  }
+}

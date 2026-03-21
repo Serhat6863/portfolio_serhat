@@ -1,0 +1,149 @@
+<section class="projects" aria-labelledby="projects-heading">
+  <div class="container">
+
+    <!-- Header -->
+    <header class="projects__header">
+      <span class="section-tag" aria-hidden="true">Portfolio</span>
+      <h2 id="projects-heading" class="section-title">
+        Mes <span class="section-title-accent">Projets</span>
+      </h2>
+      <p class="section-subtitle">
+        Découvrez mes réalisations personnelles et mes missions freelance
+      </p>
+    </header>
+
+    <!-- Tab switcher -->
+    <div class="tabs" role="tablist" aria-label="Catégories de projets">
+      <button
+        type="button"
+        role="tab"
+        id="tab-personal"
+        aria-controls="panel-projects"
+        [attr.aria-selected]="activeTab() === 'personal'"
+        [class.tab--active]="activeTab() === 'personal'"
+        class="tab"
+        (click)="setTab('personal')"
+      >
+        Projets Personnels
+        <span class="tab__count">{{ 4 }}</span>
+      </button>
+      <button
+        type="button"
+        role="tab"
+        id="tab-freelance"
+        aria-controls="panel-projects"
+        [attr.aria-selected]="activeTab() === 'freelance'"
+        [class.tab--active]="activeTab() === 'freelance'"
+        class="tab"
+        (click)="setTab('freelance')"
+      >
+        Projets Freelance
+        <span class="tab__count">{{ 2 }}</span>
+      </button>
+    </div>
+
+    <!-- Tech filters -->
+    <div
+      class="filters"
+      role="group"
+      aria-label="Filtrer par technologie"
+    >
+      @for (tech of allTechs; track tech) {
+        <button
+          type="button"
+          class="filter-btn"
+          [class.filter-btn--active]="activeTechs().has(tech)"
+          [attr.aria-pressed]="activeTechs().has(tech)"
+          (click)="toggleTech(tech)"
+        >
+          {{ tech }}
+        </button>
+      }
+    </div>
+
+    <!-- Projects grid -->
+    <div
+      id="panel-projects"
+      role="tabpanel"
+      [attr.aria-labelledby]="activeTab() === 'personal' ? 'tab-personal' : 'tab-freelance'"
+      [@tabContent]="activeTab()"
+    >
+      @if (filteredProjects().length > 0) {
+        <ul class="projects-grid" role="list">
+          @for (project of filteredProjects(); track project.id) {
+            <li
+              class="project-card"
+              [attr.data-id]="project.id"
+              [style.--accent]="project.accent"
+              [@cardReveal]="cardState(project.id)"
+            >
+              @if (project.images.length > 0) {
+                <button
+                  type="button"
+                  class="card__trigger"
+                  (click)="openCarousel(project)"
+                  [attr.aria-label]="'Voir les captures de ' + project.title"
+                ></button>
+              }
+
+              <!-- Card preview -->
+              <div class="card__preview" aria-hidden="true">
+                @if (project.images.length > 0) {
+                  <img
+                    [src]="project.images[0]"
+                    [alt]="project.title"
+                    class="card__preview-img"
+                  />
+                } @else {
+                  <span class="card__preview-letter">{{ project.title.charAt(0) }}</span>
+                }
+                @if (project.inProgress) {
+                  <span class="card__badge">
+                    <span class="badge__dot"></span>
+                    En cours
+                  </span>
+                }
+              </div>
+
+              <!-- Card body -->
+              <div class="card__body">
+                <h3 class="card__title">{{ project.title }}</h3>
+                <p class="card__desc">{{ project.description }}</p>
+
+                <div class="card__footer">
+                  <ul class="card__tags" role="list" aria-label="Technologies">
+                    @for (tech of project.techs; track tech) {
+                      <li class="tag">{{ tech }}</li>
+                    }
+                  </ul>
+                  <div class="card__duration">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    {{ project.duration }}
+                  </div>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="empty-state">Aucun projet ne correspond à ce filtre.</p>
+      }
+    </div>
+
+  </div>
+</section>
+
