@@ -76,8 +76,8 @@
       <div class="contact__form-wrapper">
         @if (submitState() === 'sent') {
           <!-- Success state -->
-          <div class="form-success" role="status">
-            <div class="success-icon" aria-hidden="true">
+          <div class="form-success" role="status" aria-live="polite">
+            <div class="form-feedback__icon form-feedback__icon--success" aria-hidden="true">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -102,6 +102,36 @@
               class="btn-reset"
               (click)="resetForm()"
             >Envoyer un autre message</button>
+          </div>
+        } @else if (submitState() === 'error') {
+          <!-- Error state -->
+          <div class="form-error-state" role="alert" aria-live="assertive">
+            <div class="form-feedback__icon form-feedback__icon--error" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <h3 class="error-title">Échec de l'envoi</h3>
+            <p class="error-text">
+              Une erreur est survenue. Réessayez ou contactez-moi directement par email.
+            </p>
+            <button
+              type="button"
+              class="btn-reset"
+              (click)="resetForm()"
+            >Réessayer</button>
           </div>
         } @else {
           <!-- Form -->

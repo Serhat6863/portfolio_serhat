@@ -236,6 +236,8 @@
             [src]="project().images[currentIndex()]"
             [alt]="project().title + ' — capture ' + (currentIndex() + 1) + ' sur ' + total()"
             class="carousel-img"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -267,7 +269,7 @@
       <!-- Dots -->
       @if (total() > 1) {
         <div class="carousel-dots" role="group" aria-label="Navigation images">
-          @for (img of project().images; track $index) {
+          @for (img of project().images; track img) {
             <button
               type="button"
               class="carousel-dot"

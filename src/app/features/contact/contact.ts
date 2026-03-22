@@ -14,8 +14,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
+import { EmailService } from '../../core/services/email.service';
 
-type SubmitState = 'idle' | 'sending' | 'sent';
+type SubmitState = 'idle' | 'sending' | 'sent' | 'error';
 
 @Component({
   selector: 'app-contact',
@@ -29,6 +30,7 @@ export class Contact {
   private readonly el = inject(ElementRef<HTMLElement>);
   private readonly scrollAnim = inject(ScrollAnimationService);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly emailService = inject(EmailService);
 
   readonly submitState = signal<SubmitState>('idle');
 
@@ -75,12 +77,19 @@ export class Contact {
       this.cdr.markForCheck();
       return;
     }
+
+    const { name, email, message } = this.form.getRawValue();
     this.submitState.set('sending');
-    // TODO: integrate with EmailJS / Formspree / backend API
-    setTimeout(() => {
-      this.submitState.set('sent');
-      this.form.reset();
-    }, 1400);
+
+    this.emailService
+      .send(name, email, message)
+      .then(() => {
+        this.submitState.set('sent');
+        this.form.reset();
+      })
+      .catch(() => {
+        this.submitState.set('error');
+      });
   }
 
   protected resetForm(): void {

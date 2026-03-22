@@ -74,6 +74,8 @@
                     [src]="project.images[0]"
                     [alt]="project.title"
                     class="card__preview-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                 } @else {
                   <span class="card__preview-letter">{{ project.title.charAt(0) }}</span>
