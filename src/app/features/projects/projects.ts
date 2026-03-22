@@ -18,11 +18,9 @@ import {
   trigger,
 } from '@angular/animations';
 import {
-  ALL_TECHS,
   FREELANCE_PROJECTS,
   PERSONAL_PROJECTS,
   type Project,
-  type Tech,
 } from '../../core/data/projects.data';
 import { CarouselService } from '../../core/services/carousel.service';
 
@@ -62,18 +60,12 @@ export class Projects {
   private readonly carousel = inject(CarouselService);
   private observer: IntersectionObserver | null = null;
 
-  readonly allTechs = ALL_TECHS;
   readonly activeTab = signal<Tab>('personal');
-  readonly activeTechs = signal<ReadonlySet<Tech>>(new Set());
   readonly visibleCardIds = signal<ReadonlySet<number>>(new Set());
 
-  readonly filteredProjects = computed<readonly Project[]>(() => {
-    const source =
-      this.activeTab() === 'personal' ? PERSONAL_PROJECTS : FREELANCE_PROJECTS;
-    const filters = this.activeTechs();
-    if (filters.size === 0) return source;
-    return source.filter((p) => p.techs.some((t) => filters.has(t)));
-  });
+  readonly filteredProjects = computed<readonly Project[]>(() =>
+    this.activeTab() === 'personal' ? PERSONAL_PROJECTS : FREELANCE_PROJECTS,
+  );
 
   constructor() {
     afterNextRender(() => {
@@ -113,18 +105,6 @@ export class Projects {
 
   protected setTab(tab: Tab): void {
     this.activeTab.set(tab);
-  }
-
-  protected toggleTech(tech: Tech): void {
-    this.activeTechs.update((s) => {
-      const next = new Set(s);
-      if (next.has(tech)) {
-        next.delete(tech);
-      } else {
-        next.add(tech);
-      }
-      return next;
-    });
   }
 
   protected cardState(id: number): 'hidden' | 'visible' {

@@ -182,6 +182,288 @@
 }
 
 /* ============================================================
+   NDA MODAL VARIANT
+   ============================================================ */
+
+.carousel-modal--nda {
+  background: #0a0f1e;
+  border-color: #1a2d50;
+  max-width: 620px;
+}
+
+/* ============================================================
+   WIP CARD (En cours de développement)
+   ============================================================ */
+
+.wip-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  margin-top: 24px;
+}
+
+.wip-card {
+  background: #0a0f1e;
+  border: 1px solid #1a2d50;
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  margin: 0 24px 24px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+}
+
+.wip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 14px rgba(59, 130, 246, 0.2));
+}
+
+.wip-title {
+  font-size: clamp(var(--text-xl), 3vw, 1.6rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.wip-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  border-radius: 1px;
+  margin: 16px auto;
+}
+
+.wip-text {
+  font-size: var(--text-sm);
+  color: #8892a4;
+  line-height: 1.7;
+  margin: 16px 0 28px;
+}
+
+.wip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-md);
+  padding: 10px 24px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #60a5fa;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.wip-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+.wip-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .wip-card {
+    padding: 28px 24px;
+  }
+}
+
+/* ============================================================
+   NDA SCREEN
+   ============================================================ */
+
+.nda-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* --- Banner --- */
+.nda-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: var(--space-7) var(--space-6) 0;
+  background: linear-gradient(160deg, #0d1b35 0%, #0a1628 100%);
+  border-bottom: 1px solid #1a2d50;
+  flex-shrink: 0;
+}
+
+.nda-banner__lock {
+  filter: drop-shadow(0 0 12px rgba(0, 180, 216, 0.4));
+}
+
+.nda-banner__label {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00b4d8;
+  letter-spacing: 0.4em;
+  text-shadow: 0 0 20px rgba(0, 180, 216, 0.35);
+}
+
+/* --- Body --- */
+.nda-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 16px 32px 32px;
+}
+
+/* --- CONFIDENTIEL badge --- */
+.nda-confidential-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--radius-full);
+  padding: 5px var(--space-4);
+  font-size: 11px;
+  font-weight: 700;
+  color: #f97316;
+  letter-spacing: 0.18em;
+}
+
+.nda-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #ef4444;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: ndaPulse 2s ease-in-out infinite;
+}
+
+@keyframes ndaPulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50%       { opacity: 0.7; transform: scale(1.4); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0); }
+}
+
+/* --- Title --- */
+.nda-title {
+  font-size: clamp(var(--text-xl), 3vw, 1.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 20px 0 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+/* --- Glow divider --- */
+.nda-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #00b4d8 50%, transparent 100%);
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.45);
+  margin: 12px 0;
+}
+
+/* --- Mini-card bullet points --- */
+.nda-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nda-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: #0d1b35;
+  border: 1px solid #1a2d50;
+  border-left: 3px solid #00b4d8;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-size: var(--text-sm);
+  color: #a8b8cc;
+  line-height: 1.55;
+}
+
+.nda-item__check {
+  flex-shrink: 0;
+  margin-top: 1px;
+  filter: drop-shadow(0 0 4px rgba(0, 180, 216, 0.3));
+}
+
+/* --- Stack --- */
+.nda-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.nda-badge {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  padding: 6px var(--space-4);
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+}
+
+.nda-badge--flutter {
+  color: #00b4d8;
+  background: rgba(0, 180, 216, 0.12);
+  border-color: rgba(0, 180, 216, 0.3);
+}
+
+.nda-badge--dart {
+  color: #4fc3f7;
+  background: rgba(79, 195, 247, 0.1);
+  border-color: rgba(79, 195, 247, 0.28);
+}
+
+.nda-badge--spring {
+  color: #8bc34a;
+  background: rgba(139, 195, 74, 0.1);
+  border-color: rgba(139, 195, 74, 0.28);
+}
+
+/* --- Footer note --- */
+.nda-footer-note {
+  font-size: var(--text-xs);
+  color: #4a5568;
+  margin: 16px 0 0;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 
@@ -202,6 +484,23 @@
 
   .carousel-modal__header {
     padding: var(--space-3) var(--space-4);
+  }
+
+  .nda-banner {
+    padding: var(--space-5) var(--space-4) var(--space-5);
+  }
+
+  .nda-body {
+    padding: var(--space-5) var(--space-4) var(--space-5);
+    gap: var(--space-4);
+  }
+
+  .nda-item {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .nda-banner__label {
+    font-size: 1.5rem;
   }
 }
 

@@ -84,30 +84,14 @@
   filter: drop-shadow(0 0 28px rgba(0, 180, 216, 0.45));
 }
 
-/* --- Typewriter --- */
+/* --- Title --- */
 .hero__typewriter {
   font-family: var(--font-mono);
   font-size: clamp(var(--text-base), 2.5vw, var(--text-xl));
   color: #00b4d8;
-  min-height: 2em;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.hero__cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background-color: #00b4d8;
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
 }
 
 /* --- Bio --- */

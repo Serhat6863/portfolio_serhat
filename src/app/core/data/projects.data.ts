@@ -1,17 +1,14 @@
-export type Tech = 'Flutter' | 'Firebase' | 'API' | 'Figma';
-
 export interface Project {
   readonly id: number;
   readonly title: string;
   readonly description: string;
-  readonly techs: readonly Tech[];
   readonly duration: string;
   readonly inProgress?: boolean;
+  readonly isConfidential?: boolean;
+  readonly link?: string;
   readonly accent: string;
   readonly images: readonly string[];
 }
-
-export const ALL_TECHS: readonly Tech[] = ['Flutter', 'Firebase', 'API', 'Figma'];
 
 export const PERSONAL_PROJECTS: readonly Project[] = [
   {
@@ -19,7 +16,6 @@ export const PERSONAL_PROJECTS: readonly Project[] = [
     title: 'Movie App',
     description:
       'Application de découverte de films avec recherche avancée et interface moderne.',
-    techs: ['Flutter', 'API'],
     duration: '2 semaines',
     accent: '#00b4d8',
     images: [
@@ -35,7 +31,6 @@ export const PERSONAL_PROJECTS: readonly Project[] = [
     title: 'QuizDuel',
     description:
       'Jeu de quiz interactif avec salles multijoueurs et classements en temps réel.',
-    techs: ['Flutter', 'Firebase'],
     duration: '2 mois',
     accent: '#7c3aed',
     images: [
@@ -53,7 +48,6 @@ export const PERSONAL_PROJECTS: readonly Project[] = [
     title: 'Weather App',
     description:
       "Application météo avec Clean Architecture et intégration d'une API météo.",
-    techs: ['Flutter', 'API'],
     duration: '1 semaine',
     accent: '#0ea5e9',
     images: [
@@ -68,7 +62,6 @@ export const PERSONAL_PROJECTS: readonly Project[] = [
     title: 'Meditation App',
     description:
       'Ma première app Flutter — design Figma reproduit fidèlement pixel par pixel.',
-    techs: ['Flutter', 'Figma'],
     duration: '1 mois',
     accent: '#ec4899',
     images: [
@@ -87,10 +80,8 @@ export const FREELANCE_PROJECTS: readonly Project[] = [
   {
     id: 5,
     title: 'LivePulp',
-    description: 'Projet en cours de développement — lancement imminent.',
-    techs: ['Flutter', 'Firebase'],
-    duration: 'En cours',
-    inProgress: true,
+    description: 'Application mobile sociale avec chat en temps réel, gestion de profil et système d\'amis.',
+    duration: '3 mois',
     accent: '#00ff88',
     images: [
       'assets/images/projects/freelance/livepulp/livepulp.jpg',
@@ -111,9 +102,35 @@ export const FREELANCE_PROJECTS: readonly Project[] = [
     title: 'Projet Freelance',
     description:
       'Application mobile complète développée pour un client, de la conception à la livraison.',
-    techs: ['Flutter'],
     duration: '2 mois',
+    isConfidential: true,
     accent: '#f59e0b',
     images: [],
+  },
+  {
+    id: 7,
+    title: 'Reve Academy',
+    description:
+      'Application mobile e-learning développée pour un client, de la conception à la livraison.',
+    duration: '2 mois',
+    isConfidential: false,
+    inProgress: true,
+    link: 'https://reveacademy.fr/',
+    accent: '#3b82f6',
+    images: [],
+  },
+  {
+    id: 8,
+    title: 'Whodabest',
+    description:
+      'Application mobile développée pour un client, de la conception à la livraison.',
+    duration: '2 mois',
+    inProgress: true,
+    accent: '#a855f7',
+    images: [
+      'assets/images/projects/freelance/whodabest/achivement.jpg',
+      'assets/images/projects/freelance/whodabest/payement.jpg',
+      'assets/images/projects/freelance/whodabest/settings.jpg',
+    ],
   },
 ];

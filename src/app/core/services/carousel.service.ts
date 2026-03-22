@@ -6,7 +6,7 @@ export class CarouselService {
   readonly selectedProject = signal<Project | null>(null);
 
   open(project: Project): void {
-    if (project.images.length === 0) return;
+    if (project.images.length === 0 && !project.isConfidential && !project.link) return;
     this.selectedProject.set(project);
   }
 

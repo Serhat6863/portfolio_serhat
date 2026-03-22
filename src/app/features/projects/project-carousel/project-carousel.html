@@ -5,6 +5,7 @@
 >
   <div
     class="carousel-modal"
+    [class.carousel-modal--nda]="project().isConfidential"
     role="dialog"
     aria-modal="true"
     aria-labelledby="carousel-title"
@@ -40,79 +41,244 @@
       </button>
     </div>
 
-    <!-- Stage -->
-    <div class="carousel-stage">
-      @if (total() > 1) {
-        <button
-          type="button"
-          class="carousel-nav carousel-nav--prev"
-          (click)="prev()"
-          aria-label="Image précédente"
-        >
+    @if (project().isConfidential) {
+      <!-- NDA screen -->
+      <div class="nda-wrap" role="region" aria-label="Contenu confidentiel sous NDA">
+
+        <!-- Banner -->
+        <div class="nda-banner" aria-hidden="true">
           <svg
+            class="nda-banner__lock"
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="40"
+            height="40"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
+            stroke="#00b4d8"
+            stroke-width="1.6"
             stroke-linecap="round"
             stroke-linejoin="round"
-            aria-hidden="true"
           >
-            <polyline points="15 18 9 12 15 6" />
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
           </svg>
-        </button>
-      }
+          <span class="nda-banner__label">NDA</span>
+        </div>
 
-      <div class="carousel-image-wrap">
-        <img
-          [src]="project().images[currentIndex()]"
-          [alt]="project().title + ' — capture ' + (currentIndex() + 1) + ' sur ' + total()"
-          class="carousel-img"
-        />
+        <!-- Body -->
+        <div class="nda-body">
+
+          <div class="nda-confidential-badge" aria-label="Document confidentiel">
+            <span class="nda-pulse-dot" aria-hidden="true"></span>
+            CONFIDENTIEL
+          </div>
+
+          <h3 class="nda-title">Mission Freelance</h3>
+
+          <div class="nda-divider" aria-hidden="true"></div>
+
+          <ul class="nda-list" role="list" aria-label="Détails de la mission">
+            <li class="nda-item">
+              <svg
+                class="nda-item__check"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00b4d8"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Conception et développement de widgets et composants UI réutilisables en Flutter</span>
+            </li>
+            <li class="nda-item">
+              <svg
+                class="nda-item__check"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00b4d8"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Intégration de pages selon les maquettes Figma</span>
+            </li>
+            <li class="nda-item">
+              <svg
+                class="nda-item__check"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00b4d8"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Intégration avec une API Spring Boot</span>
+            </li>
+          </ul>
+
+          <div class="nda-stack" aria-label="Stack technique">
+            <span class="nda-badge nda-badge--flutter">Flutter</span>
+            <span class="nda-badge nda-badge--dart">Dart</span>
+            <span class="nda-badge nda-badge--spring">Spring Boot</span>
+          </div>
+
+          <p class="nda-footer-note">
+            Les détails complets sont disponibles sur demande
+          </p>
+        </div>
       </div>
+    } @else if (project().images.length === 0) {
+      <!-- En cours screen -->
+      <div class="wip-wrap" role="region" aria-label="Projet en cours de développement">
+        <div class="wip-card">
+          <div class="wip-icon" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#3b82f6"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22.7 19l-9.1-9.1c.9-3.8-1-7.7-4.5-9.6a9.9 9.9 0 0 0-9.6 1L5 7.5 7.5 5l6.5 6.5" />
+              <path d="m15.5 15.5 3 3L22 20l-1.5 1.5-3-3" />
+              <path d="m3 21 9-9" />
+            </svg>
+          </div>
 
-      @if (total() > 1) {
-        <button
-          type="button"
-          class="carousel-nav carousel-nav--next"
-          (click)="next()"
-          aria-label="Image suivante"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </button>
-      }
-    </div>
+          <h3 class="wip-title">Projet en cours</h3>
 
-    <!-- Dots -->
-    @if (total() > 1) {
-      <div class="carousel-dots" role="group" aria-label="Navigation images">
-        @for (img of project().images; track $index) {
+          <div class="wip-divider" aria-hidden="true"></div>
+
+          <p class="wip-text">
+            Application mobile e-learning pour Reve Academy.<br />
+            Découvrez la plateforme web en attendant l'app mobile.
+          </p>
+
+          @if (project().link) {
+            <a
+              class="wip-btn"
+              [href]="project().link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Voir le site
+            </a>
+          }
+        </div>
+      </div>
+    } @else {
+      <!-- Stage -->
+      <div class="carousel-stage">
+        @if (total() > 1) {
           <button
             type="button"
-            class="carousel-dot"
-            [class.carousel-dot--active]="currentIndex() === $index"
-            (click)="goTo($index)"
-            [attr.aria-label]="'Image ' + ($index + 1)"
-            [attr.aria-current]="currentIndex() === $index"
-          ></button>
+            class="carousel-nav carousel-nav--prev"
+            (click)="prev()"
+            aria-label="Image précédente"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+        }
+
+        <div class="carousel-image-wrap">
+          <img
+            [src]="project().images[currentIndex()]"
+            [alt]="project().title + ' — capture ' + (currentIndex() + 1) + ' sur ' + total()"
+            class="carousel-img"
+          />
+        </div>
+
+        @if (total() > 1) {
+          <button
+            type="button"
+            class="carousel-nav carousel-nav--next"
+            (click)="next()"
+            aria-label="Image suivante"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
         }
       </div>
+
+      <!-- Dots -->
+      @if (total() > 1) {
+        <div class="carousel-dots" role="group" aria-label="Navigation images">
+          @for (img of project().images; track $index) {
+            <button
+              type="button"
+              class="carousel-dot"
+              [class.carousel-dot--active]="currentIndex() === $index"
+              (click)="goTo($index)"
+              [attr.aria-label]="'Image ' + ($index + 1)"
+              [attr.aria-current]="currentIndex() === $index"
+            ></button>
+          }
+        </div>
+      }
     }
   </div>
 </div>

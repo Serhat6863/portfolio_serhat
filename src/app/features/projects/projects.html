@@ -38,27 +38,8 @@
         (click)="setTab('freelance')"
       >
         Projets Freelance
-        <span class="tab__count">{{ 2 }}</span>
+        <span class="tab__count">{{ 4 }}</span>
       </button>
-    </div>
-
-    <!-- Tech filters -->
-    <div
-      class="filters"
-      role="group"
-      aria-label="Filtrer par technologie"
-    >
-      @for (tech of allTechs; track tech) {
-        <button
-          type="button"
-          class="filter-btn"
-          [class.filter-btn--active]="activeTechs().has(tech)"
-          [attr.aria-pressed]="activeTechs().has(tech)"
-          (click)="toggleTech(tech)"
-        >
-          {{ tech }}
-        </button>
-      }
     </div>
 
     <!-- Projects grid -->
@@ -77,12 +58,12 @@
               [style.--accent]="project.accent"
               [@cardReveal]="cardState(project.id)"
             >
-              @if (project.images.length > 0) {
+              @if (project.images.length > 0 || project.isConfidential || project.link) {
                 <button
                   type="button"
                   class="card__trigger"
                   (click)="openCarousel(project)"
-                  [attr.aria-label]="'Voir les captures de ' + project.title"
+                  [attr.aria-label]="project.isConfidential ? 'Voir les détails de ' + project.title : 'En savoir plus sur ' + project.title"
                 ></button>
               }
 
@@ -111,11 +92,6 @@
                 <p class="card__desc">{{ project.description }}</p>
 
                 <div class="card__footer">
-                  <ul class="card__tags" role="list" aria-label="Technologies">
-                    @for (tech of project.techs; track tech) {
-                      <li class="tag">{{ tech }}</li>
-                    }
-                  </ul>
                   <div class="card__duration">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
