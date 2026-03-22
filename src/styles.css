@@ -115,6 +115,7 @@ body {
   background-size: 60px 60px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img, svg {
@@ -207,6 +208,12 @@ code, pre, kbd {
 .reveal-delay-2 { animation-delay: 200ms; }
 .reveal-delay-3 { animation-delay: 300ms; }
 .reveal-delay-4 { animation-delay: 400ms; }
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 16px;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .reveal        { opacity: 1; }

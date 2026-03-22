@@ -27,6 +27,19 @@ export class ProjectCarousel {
   readonly currentIndex = signal(0);
   readonly total = computed(() => this.project().images.length);
 
+  private touchStartX = 0;
+
+  protected onTouchStart(e: TouchEvent): void {
+    this.touchStartX = e.touches[0].clientX;
+  }
+
+  protected onTouchEnd(e: TouchEvent): void {
+    const delta = e.changedTouches[0].clientX - this.touchStartX;
+    if (Math.abs(delta) > 40) {
+      delta < 0 ? this.next() : this.prev();
+    }
+  }
+
   private readonly keydownHandler = (e: KeyboardEvent): void => {
     if (e.key === 'Escape') this.close();
     else if (e.key === 'ArrowLeft') this.prev();

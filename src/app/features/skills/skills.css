@@ -133,6 +133,41 @@
 }
 
 /* --- Responsive --- */
+@media (max-width: 768px) {
+  .skills {
+    padding: 0;
+  }
+
+  .skills > .container {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .skills__group {
+    width: 100%;
+  }
+
+  .group__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+
+  .skill-card {
+    width: 100%;
+  }
+
+  .skill-card__name {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .group__title {
+    text-align: left;
+  }
+}
+
 @media (max-width: 640px) {
   .skills__categories {
     grid-template-columns: 1fr;

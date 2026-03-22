@@ -217,7 +217,23 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .scroll-indicator,
+  .scroll-mouse,
+  .scroll-down,
+  [class*="scroll"],
+  [class*="mouse"],
+  [class*="defiler"],
+  [class*="défiler"] {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-inline: 16px;
+  }
+
   .hero__content {
     gap: var(--space-5);
   }

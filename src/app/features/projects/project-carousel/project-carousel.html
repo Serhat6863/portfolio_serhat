@@ -206,7 +206,11 @@
       </div>
     } @else {
       <!-- Stage -->
-      <div class="carousel-stage">
+      <div
+        class="carousel-stage"
+        (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event)"
+      >
         @if (total() > 1) {
           <button
             type="button"
